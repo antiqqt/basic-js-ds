@@ -29,26 +29,26 @@ function removeKFromList(l, k) {
   let prevNode = null;
 
   while (currentNode) {
-    if (currentNode.value === valueToRemove) {
-      // Then there're two outcomes
-      if (!prevNode) {
-        // If we're in the head of our list,
-        // move head forward
-        headOfList = headOfList.next;
-        currentNode = currentNode.next;
-      } else {
-        // If we're anywhere else,
-        // link previous and next elements 
-        // from current
-        prevNode.next = currentNode.next;
-        currentNode = currentNode.next;
-      }
-      continue;
+    const valueIsFound = currentNode.value === valueToRemove;
+
+    if (valueIsFound && !prevNode) {
+      // If we're in the head of our list,
+      // move head forward
+      headOfList = headOfList.next;
     }
 
-    // If value is not that we're looking for,
-    // continue moving forward
-    prevNode = currentNode;
+    if (valueIsFound && prevNode) {
+      // If we're anywhere else, link elements
+      // which are previous and next to current
+      prevNode.next = currentNode.next;
+    }
+
+    if (!valueIsFound) {
+      // Keep reference to the previous node
+      prevNode = currentNode;
+    }
+
+    // Continue moving forward
     currentNode = currentNode.next;
   }
 
