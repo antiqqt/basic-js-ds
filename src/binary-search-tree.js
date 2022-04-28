@@ -107,13 +107,11 @@ class BinarySearchTree {
       }
 
       if (!node.left) {
-        node = node.right
-        return node;
+        return node.right;
       }
 
       if (!node.right) {
-        node = node.left
-        return node;
+        return node.left;
       }
 
       // If both children exist
